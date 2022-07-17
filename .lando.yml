@@ -1,0 +1,19 @@
+name: ecom
+recipe: laravel
+
+config:
+  php: '8.1'
+  composer_version: 2-latest
+  via: apache
+  webroot: public
+  database: mysql
+  cache: redis
+  xdebug: false
+
+services:
+  node:
+    type: node
+
+tooling:
+  npm:
+    service: node
