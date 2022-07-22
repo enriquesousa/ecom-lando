@@ -1,6 +1,6 @@
 {
     "workbench.colorTheme": "Atom Material Theme",
-    "cSpell.language": "en,es",
+    "cSpell.language": "en,es,es-ES",
     "cSpell.words": [
         "accesores",
         "carrito",
@@ -46,5 +46,6 @@
     "intelephense.diagnostics.undefinedConstants": false,
     "intelephense.diagnostics.undefinedProperties": false,
     "intelephense.diagnostics.undefinedTypes": false,
-    "intelephense.diagnostics.undefinedMethods": false
+    "intelephense.diagnostics.undefinedMethods": false,
+    "editor.fontSize": 16
 }
