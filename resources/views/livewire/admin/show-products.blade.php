@@ -20,66 +20,99 @@
             <table class="w-full leading-normal">
                 <thead>
                     <tr>
+
                         <th
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            Name
+                            Nombre
                         </th>
                         <th
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            products
+                            Categoría
                         </th>
                         <th
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            Created at
+                            Estado
                         </th>
                         <th
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            QRT
+                            Precio
                         </th>
                         <th
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            Status
+                            Editar
                         </th>
+
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($products as $product)
                         <tr>
+
+                            {{-- foto y nombre del producto --}}
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 w-10 h-10">
-                                        <img class="w-full h-full rounded-full"
-                                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                            alt="" />
+                                        {{-- <img class="w-full h-full rounded-full object-cover" src="{{ Storage::url($product->images->first()->url) }}" alt="{{ $product->name }}" /> --}}
+                                        <img class="w-full h-full rounded-full object-cover" src="{{ $product->images->first()->url }}" alt="{{ $product->name }}" />
                                     </div>
                                     <div class="ml-3">
                                         <p class="text-gray-900 whitespace-no-wrap">
-                                            Vera Carpenter
+                                            {{ $product->name }}
                                         </p>
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">Admin</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                    Jan 21, 2020
-                                </p>
-                            </td>
+
+                            {{-- Categoría del producto --}}
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">
-                                    43
+                                   {{ $product->subcategory->category->name }}
                                 </p>
                             </td>
+
+                            {{-- Estado del producto --}}
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <span
-                                    class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                    <span aria-hidden
-                                        class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                    <span class="relative">Activo</span>
-                                </span>
+
+                                @switch($product->status)
+                                    @case(1)
+                                        <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                            <span aria-hidden
+                                                class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+                                            <span class="relative">
+                                                Borrador
+                                            </span>
+                                        </span>
+                                        @break
+                                    @case(2)
+                                        <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                            <span aria-hidden
+                                                class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                            <span class="relative">
+                                                Publicado
+                                            </span>
+                                        </span>
+                                        @break
+                                    @default
+                                @endswitch
+
                             </td>
+
+                            {{-- Precio del producto --}}
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">
+                                    {{ $product->price }} USD
+                                </p>
+                            </td>
+
+                            {{-- Editar --}}
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">
+                                    <a href="{{ route('admin.products.edit', $product) }}" class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                                </p>
+                            </td>
+
+
+
                         </tr>
                     @endforeach
                 </tbody>

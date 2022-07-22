@@ -7,3 +7,7 @@ use App\Http\Livewire\Admin\ShowProducts;
 // asi: http://ecom.lndo.site/admin/
 // Tal como lo definimos en app/Providers/RouteServiceProvider.php
 route::get('/', ShowProducts::class)->name('admin.index');
+
+route::get('products/{product}/edit', function(){
+
+})->name('admin.products.edit');
