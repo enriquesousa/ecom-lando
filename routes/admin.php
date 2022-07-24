@@ -8,6 +8,10 @@ use App\Http\Livewire\Admin\ShowProducts;
 // Tal como lo definimos en app/Providers/RouteServiceProvider.php
 route::get('/', ShowProducts::class)->name('admin.index');
 
+route::get('products/create', function(){
+
+})->name('admin.products.create');
+
 route::get('products/{product}/edit', function(){
 
 })->name('admin.products.edit');
